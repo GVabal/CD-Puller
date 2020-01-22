@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="CD-Puller">
+    <output-path>$PROJECT_DIR$/out/artifacts/CD_Puller</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="Main" />
+        <option name="description" value="" />
+        <option name="height" value="422" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+        <option name="width" value="700" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="CD_Puller.jar">
+        <element id="module-output" name="CD-Puller" />
+      </element>
+    </root>
+  </artifact>
+</component>
