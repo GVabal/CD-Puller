@@ -28,9 +28,8 @@ public class Controller {
     private TextField csvFileField;
 
     //put this under properties
-    //String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
-    String baseLocation = "/Users/zmru/Desktop/manual handling";
-    String SLASH = "/";
+    String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
+    String SLASH = "\\";
     String DELIMITER = ";";
 
     public void selectFile() {
