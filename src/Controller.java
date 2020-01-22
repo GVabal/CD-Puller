@@ -57,7 +57,6 @@ public class Controller {
 
         String workLocation = workFolderField.getText();
         String destination = destinationField.getText();
-        //add stop
         String day = workFolderField.getText(0, 10);
         String lookupLocation = "";
 
@@ -72,7 +71,6 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //add stop
         records.remove(0); // take out [0nr 1ssn 2date 3robot 4comment]
 
         for (List<String> record : records) {
@@ -87,12 +85,12 @@ public class Controller {
                 File destinationDir = new File(destination + SLASH + record.get(0) + " " + record.get(1) + " " + record.get(2));
                 FileUtils.copyDirectory(lookupLocationDir, destinationDir);
                 consoleItems.add(record.get(0) + " " + record.get(1) + " " + record.get(2) + " found.");
+                consoleField.setItems(consoleItems);
             } catch (IOException e) {
                 e.printStackTrace();
                 consoleItems.add("! " + record.get(0) + " " + record.get(1) + " " + record.get(2) + " not found.");
+                consoleField.setItems(consoleItems);
             }
-
-            consoleField.setItems(consoleItems);
         }
         consoleItems.add("Done!");
         consoleField.setItems(consoleItems);
