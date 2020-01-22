@@ -57,6 +57,13 @@ public class Controller {
 
         String workLocation = workFolderField.getText();
         String destination = destinationField.getText();
+
+        if (workLocation.isEmpty() || destination.isEmpty()) {
+            consoleItems.add("Stopped. Fill in missing fields");
+            consoleField.setItems(consoleItems);
+            return;
+        }
+
         String day = workFolderField.getText(0, 10);
         String lookupLocation = "";
 
@@ -69,7 +76,9 @@ public class Controller {
                 records.add(Arrays.asList(values));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            consoleItems.add("Stopped. No/Bad CSV file");
+            consoleField.setItems(consoleItems);
+            return;
         }
         records.remove(0); // take out [0nr 1ssn 2date 3robot 4comment]
 
@@ -87,7 +96,6 @@ public class Controller {
                 consoleItems.add(record.get(0) + " " + record.get(1) + " " + record.get(2) + " found.");
                 consoleField.setItems(consoleItems);
             } catch (IOException e) {
-                e.printStackTrace();
                 consoleItems.add("! " + record.get(0) + " " + record.get(1) + " " + record.get(2) + " not found.");
                 consoleField.setItems(consoleItems);
             }
@@ -100,7 +108,7 @@ public class Controller {
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
         String directory = directoryChooser.showDialog(null).toString();
-        Path path = Paths.get(directory + SLASH + "File.csv");
+        Path path = Paths.get(directory + SLASH + "List.csv");
 
          try {
              Files.createFile(path);
@@ -109,11 +117,10 @@ public class Controller {
              writer.write("nr;ssn;date;robot;comment");
              writer.close();
 
-             consoleItems.add("CSV generated!");
+             consoleItems.add("CSV created " + directory + SLASH + "List.csv");
              consoleField.setItems(consoleItems);
          } catch (IOException e) {
-             e.printStackTrace();
-             consoleItems.add("CSV did not generate!");
+             consoleItems.add("CSV was not created");
              consoleField.setItems(consoleItems);
          }
     }
