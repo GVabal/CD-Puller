@@ -93,10 +93,10 @@ public class Controller {
                 File lookupLocationDir = new File(lookupLocation);
                 File destinationDir = new File(destination + SLASH + record.get(0) + " " + record.get(1) + " " + record.get(2));
                 FileUtils.copyDirectory(lookupLocationDir, destinationDir);
-                consoleText += record.get(0) + " " + record.get(1) + " " + record.get(2) + " found.";
+                consoleText += record.get(0) + " " + record.get(1) + " " + record.get(2) + " found.\n";
                 consoleField.setText(consoleText);
             } catch (IOException e) {
-                consoleText += "! " + record.get(0) + " " + record.get(1) + " " + record.get(2) + " not found.";
+                consoleText += "! " + record.get(0) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
                 consoleField.setText(consoleText);
             }
         }
@@ -120,14 +120,14 @@ public class Controller {
              consoleText += "CSV created at " + directory + SLASH + "List.csv\n";
              consoleField.setText(consoleText);
          } catch (IOException e) {
-             consoleText += "CSV was not created";
+             consoleText += "CSV was not created\n";
              consoleField.setText(consoleText);
 
          }
     }
 
     public void openProperties() {
-        consoleText += "Does not work yet.";
+        consoleText += "Does not work yet.\n";
         consoleField.setText(consoleText);
 
     }
