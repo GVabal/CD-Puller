@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -22,11 +22,11 @@
       <Button layoutX="14.0" layoutY="316.0" mnemonicParsing="false" onAction="#generateEmptyCsv" prefHeight="27.0" prefWidth="27.0" text="..." />
       <Label layoutX="54.0" layoutY="355.0" text="Properties" />
       <Button layoutX="14.0" layoutY="350.0" mnemonicParsing="false" onAction="#openProperties" prefHeight="27.0" prefWidth="28.0" text="..." />
-      <ListView fx:id="consoleField" layoutX="355.0" layoutY="14.0" prefHeight="391.0" prefWidth="331.0" />
       <Label layoutX="8.0" layoutY="400.0" text="p901vug">
          <font>
             <Font size="11.0" />
          </font>
       </Label>
+      <TextArea fx:id="consoleField" editable="false" layoutX="350.0" layoutY="18.0" prefHeight="390.0" prefWidth="334.0" />
    </children>
 </AnchorPane>

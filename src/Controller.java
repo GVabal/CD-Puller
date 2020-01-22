@@ -1,7 +1,6 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -17,15 +16,16 @@ import java.util.List;
 
 public class Controller {
 
-    private ObservableList<String> consoleItems = FXCollections.observableArrayList();
     @FXML
-    private ListView<String> consoleField = new ListView<>(consoleItems);
+    private TextArea consoleField;
     @FXML
     private TextField workFolderField;
     @FXML
     private TextField destinationField;
     @FXML
     private TextField csvFileField;
+
+    String consoleText = "";
 
     //put this under properties
     String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
@@ -52,15 +52,15 @@ public class Controller {
     }
 
     public void execute() {
-        consoleItems.add("Process started!");
-        consoleField.setItems(consoleItems);
+        consoleText += "Process started...\n";
+        consoleField.setText(consoleText);
 
         String workLocation = workFolderField.getText();
         String destination = destinationField.getText();
 
         if (workLocation.isEmpty() || destination.isEmpty()) {
-            consoleItems.add("Stopped. Fill in missing fields");
-            consoleField.setItems(consoleItems);
+            consoleText += "Stopped. Fill in missing fields\n";
+            consoleField.setText(consoleText);
             return;
         }
 
@@ -76,8 +76,8 @@ public class Controller {
                 records.add(Arrays.asList(values));
             }
         } catch (IOException e) {
-            consoleItems.add("Stopped. No/Bad CSV file");
-            consoleField.setItems(consoleItems);
+            consoleText += "Stopped. No/Bad CSV file\n";
+            consoleField.setText(consoleText);
             return;
         }
         records.remove(0); // take out [0nr 1ssn 2date 3robot 4comment]
@@ -93,15 +93,15 @@ public class Controller {
                 File lookupLocationDir = new File(lookupLocation);
                 File destinationDir = new File(destination + SLASH + record.get(0) + " " + record.get(1) + " " + record.get(2));
                 FileUtils.copyDirectory(lookupLocationDir, destinationDir);
-                consoleItems.add(record.get(0) + " " + record.get(1) + " " + record.get(2) + " found.");
-                consoleField.setItems(consoleItems);
+                consoleText += record.get(0) + " " + record.get(1) + " " + record.get(2) + " found.";
+                consoleField.setText(consoleText);
             } catch (IOException e) {
-                consoleItems.add("! " + record.get(0) + " " + record.get(1) + " " + record.get(2) + " not found.");
-                consoleField.setItems(consoleItems);
+                consoleText += "! " + record.get(0) + " " + record.get(1) + " " + record.get(2) + " not found.";
+                consoleField.setText(consoleText);
             }
         }
-        consoleItems.add("Done!");
-        consoleField.setItems(consoleItems);
+        consoleText += "Done!\n";
+        consoleField.setText(consoleText);
     }
 
     public void generateEmptyCsv() {
@@ -117,16 +117,18 @@ public class Controller {
              writer.write("nr;ssn;date;robot;comment");
              writer.close();
 
-             consoleItems.add("CSV created " + directory + SLASH + "List.csv");
-             consoleField.setItems(consoleItems);
+             consoleText += "CSV created at " + directory + SLASH + "List.csv\n";
+             consoleField.setText(consoleText);
          } catch (IOException e) {
-             consoleItems.add("CSV was not created");
-             consoleField.setItems(consoleItems);
+             consoleText += "CSV was not created";
+             consoleField.setText(consoleText);
+
          }
     }
 
     public void openProperties() {
-        consoleItems.add("Does not work yet.");
-        consoleField.setItems(consoleItems);
+        consoleText += "Does not work yet.";
+        consoleField.setText(consoleText);
+
     }
 }
