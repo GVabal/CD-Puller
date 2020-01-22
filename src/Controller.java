@@ -1,5 +1,4 @@
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -26,8 +25,6 @@ public class Controller {
     private TextField csvFileField;
 
     String consoleText = "";
-
-    //put this under properties
     String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
     String SLASH = "\\";
     String DELIMITER = ";";
