@@ -95,7 +95,7 @@ public class Controller {
                 consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
                 consoleField.setText(consoleText);
             } catch (IOException e) {
-                consoleText += "! " + record.get(0) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
+                consoleText += "! " + record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
                 consoleField.setText(consoleText);
             }
         }
