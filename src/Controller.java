@@ -86,25 +86,26 @@ public class Controller {
                 lookupLocation += "(1)";
             }
 
-            try {
-                File lookupLocationDir = new File(lookupLocation);
-                File destinationDir = new File(destination + SLASH + day);
-                int orderNumber = 3;
+            File lookupLocationDir = new File(lookupLocation);
+            File destinationDir = new File(destination + SLASH + day);
+            int orderNumber = 3;
 
-                //check if lookup location exists
+                //check if lookup location exists - with File.exists()
                 //check contents in location and store to list
+                //https://stackoverflow.com/questions/2534632/list-all-files-from-a-directory-recursively-with-java/24324367
+            
                 //look for address page with regex
                 //move to destination folder with new name $nr-1
                 //look for eng page with regex
                 // move to destination with new name $nr-2
                 //go through the rest of list and move them to destination folder with new name $nr-$orderNumber++
 
-                consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
-                consoleField.setText(consoleText);
-            } catch (IOException e) {
-                consoleText += "! " + record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
-                consoleField.setText(consoleText);
-            }
+            consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
+            consoleField.setText(consoleText);
+                
+            consoleText += "! " + record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
+            consoleField.setText(consoleText);
+                
         }
         consoleText += "Done!\n";
         consoleField.setText(consoleText);
