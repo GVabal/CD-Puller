@@ -90,22 +90,30 @@ public class Controller {
             File destinationDir = new File(destination + SLASH + day);
             int orderNumber = 3;
 
-                //check if lookup location exists - with File.exists()
-                //check contents in location and store to list
-                //https://stackoverflow.com/questions/2534632/list-all-files-from-a-directory-recursively-with-java/24324367
-            
-                //look for address page with regex
-                //move to destination folder with new name $nr-1
-                //look for eng page with regex
-                // move to destination with new name $nr-2
-                //go through the rest of list and move them to destination folder with new name $nr-$orderNumber++
+            if (!lookupLocationDir.exists()) {
+                consoleText += "! " + record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
+            } else {
+                File[] folderContents = new File(lookupLocation).listFiles();
+                assert folderContents != null;
 
-            consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
+                for (File file : folderContents) {
+                    if (file.getName().matches("1")) {
+                        System.out.println("copy this file with new name");
+                        break;
+                    }
+                }
+
+                for (File file : folderContents) {
+                    if (file.getName().matches("2")) {
+                        System.out.println("copy this file with new name");
+                        break;
+                    }
+                }
+
+
+                consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
+            }
             consoleField.setText(consoleText);
-                
-            consoleText += "! " + record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
-            consoleField.setText(consoleText);
-                
         }
         consoleText += "Done!\n";
         consoleField.setText(consoleText);
@@ -117,20 +125,20 @@ public class Controller {
         String directory = directoryChooser.showDialog(null).toString();
         Path path = Paths.get(directory + SLASH + "List.csv");
 
-         try {
-             Files.createFile(path);
+        try {
+            Files.createFile(path);
 
-             FileWriter writer = new FileWriter(path.toString(), true);
-             writer.write("nr;ssn;date;robot;comment");
-             writer.close();
+            FileWriter writer = new FileWriter(path.toString(), true);
+            writer.write("nr;ssn;date;robot;comment");
+            writer.close();
 
-             consoleText += "CSV created at " + directory + SLASH + "List.csv\n";
-             consoleField.setText(consoleText);
-         } catch (IOException e) {
-             consoleText += "CSV was not created\n";
-             consoleField.setText(consoleText);
+            consoleText += "CSV created at " + directory + SLASH + "List.csv\n";
+            consoleField.setText(consoleText);
+        } catch (IOException e) {
+            consoleText += "CSV was not created\n";
+            consoleField.setText(consoleText);
 
-         }
+        }
     }
 
     public void openProperties() {
