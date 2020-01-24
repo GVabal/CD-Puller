@@ -94,22 +94,23 @@ public class Controller {
                 consoleText += "! " + record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
             } else {
                 File[] folderContents = new File(lookupLocation).listFiles();
-                assert folderContents != null;
 
-                for (File file : folderContents) {
-                    if (file.getName().matches("1")) {
-                        System.out.println("copy this file with new name");
-                        break;
+                if (folderContents != null) {
+                    for (File file : folderContents) {
+                        if (file.getName().matches("1")) {
+                            System.out.println("copy this file with new name");
+                            System.out.println("remove from list");
+                            break;
+                        }
+                    }
+                    for (File file : folderContents) {
+                        if (file.getName().matches("2")) {
+                            System.out.println("copy this file with new name");
+                            System.out.println("remove from list");
+                            break;
+                        }
                     }
                 }
-
-                for (File file : folderContents) {
-                    if (file.getName().matches("2")) {
-                        System.out.println("copy this file with new name");
-                        break;
-                    }
-                }
-
 
                 consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
             }
