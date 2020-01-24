@@ -110,6 +110,9 @@ public class Controller {
                             break;
                         }
                     }
+
+                    //go through the rest
+
                 }
 
                 consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
