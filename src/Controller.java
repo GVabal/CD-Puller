@@ -116,7 +116,7 @@ public class Controller {
                     if (!folderContentsArray.isEmpty()) {
                         for (String file : folderContentsArray) {
                             if (file.matches("2[.]txt")) {
-                                FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + record.get(0) + "-2.txt"));
+                                FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + day + SLASH + record.get(0) + "-2.txt"));
                                 folderContentsArray.remove(file);
                                 break;
                             }
@@ -125,7 +125,7 @@ public class Controller {
                     if (!folderContentsArray.isEmpty()) {
                         int orderNumber = folderContentsArray.size() + 2;
                         for (String file : folderContentsArray) {
-                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + record.get(0) + "-" + orderNumber + ".txt"));
+                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + day + SLASH + record.get(0) + "-" + orderNumber + ".txt"));
                             orderNumber--;
                         }
                     }
