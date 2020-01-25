@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Controller {
@@ -25,8 +26,9 @@ public class Controller {
     private TextField csvFileField;
 
     String consoleText = "";
-    String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
-    String SLASH = "\\";
+    //String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
+    String baseLocation = "/Users/zmru/Desktop";
+    String SLASH = "/";
     String DELIMITER = ";";
 
     public void selectFile() {
@@ -95,24 +97,39 @@ public class Controller {
             } else {
                 File[] folderContents = new File(lookupLocation).listFiles();
 
+
                 if (folderContents != null) {
+                    List<String> folderContentsArray = new ArrayList<>();
+
                     for (File file : folderContents) {
-                        if (file.getName().matches("1")) {
-                            System.out.println("copy this file with new name");
-                            System.out.println("remove from list");
+                        String fileName = file.toString().split(SLASH)[7];
+                        if (!fileName.startsWith("."))
+                        folderContentsArray.add(fileName);
+                    }
+
+                    System.out.println("Before: " + folderContentsArray.toString());
+
+                    for (String file : folderContentsArray) {
+                        if (file.matches("1[.]txt")) {
+                            System.out.println("copy this file with new name 1");
+                            folderContentsArray.remove(file);
                             break;
                         }
                     }
-                    for (File file : folderContents) {
-                        if (file.getName().matches("2")) {
-                            System.out.println("copy this file with new name");
-                            System.out.println("remove from list");
-                            break;
+                    if (!folderContentsArray.isEmpty()) {
+                        for (String file : folderContentsArray) {
+                            if (file.matches("2[.]txt")) {
+                                System.out.println("copy this file with new name 2");
+                                folderContentsArray.remove(file);
+                                break;
+                            }
                         }
                     }
-
-                    //go through the rest
-
+                    if (!folderContentsArray.isEmpty()) {
+                        for (String file : folderContentsArray) {
+                            System.out.println("copy " + file);
+                        }
+                    }
                 }
 
                 consoleText += record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " found.\n";
