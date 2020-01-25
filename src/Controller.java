@@ -108,7 +108,7 @@ public class Controller {
 
                     for (String file : folderContentsArray) {
                         if (file.matches("1[.]txt")) {
-                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + record.get(0) + "-1.txt"));
+                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + day + SLASH + record.get(0) + "-1.txt"));
                             folderContentsArray.remove(file);
                             break;
                         }
