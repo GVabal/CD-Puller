@@ -50,7 +50,7 @@ public class Controller {
         destinationField.setText(directory);
     }
 
-    public void execute() {
+    public void execute() throws IOException {
         consoleText += "Process started...\n";
         consoleField.setText(consoleText);
 
@@ -90,7 +90,6 @@ public class Controller {
 
             File lookupLocationDir = new File(lookupLocation);
             File destinationDir = new File(destination + SLASH + day);
-            int orderNumber = 3;
 
             if (!lookupLocationDir.exists()) {
                 consoleText += "! " + record.get(0) + " " + record.get(3) + " " + record.get(1) + " " + record.get(2) + " not found.\n";
@@ -104,14 +103,12 @@ public class Controller {
                     for (File file : folderContents) {
                         String fileName = file.toString().split(SLASH)[7];
                         if (!fileName.startsWith("."))
-                        folderContentsArray.add(fileName);
+                            folderContentsArray.add(fileName);
                     }
-
-                    System.out.println("Before: " + folderContentsArray.toString());
 
                     for (String file : folderContentsArray) {
                         if (file.matches("1[.]txt")) {
-                            System.out.println("copy this file with new name 1");
+                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + record.get(0) + "-1.txt"));
                             folderContentsArray.remove(file);
                             break;
                         }
@@ -119,15 +116,17 @@ public class Controller {
                     if (!folderContentsArray.isEmpty()) {
                         for (String file : folderContentsArray) {
                             if (file.matches("2[.]txt")) {
-                                System.out.println("copy this file with new name 2");
+                                FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + record.get(0) + "-2.txt"));
                                 folderContentsArray.remove(file);
                                 break;
                             }
                         }
                     }
                     if (!folderContentsArray.isEmpty()) {
+                        int orderNumber = folderContentsArray.size() + 2;
                         for (String file : folderContentsArray) {
-                            System.out.println("copy " + file);
+                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destination + SLASH + record.get(0) + "-" + orderNumber + ".txt"));
+                            orderNumber--;
                         }
                     }
                 }
