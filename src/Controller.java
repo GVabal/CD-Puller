@@ -27,7 +27,7 @@ public class Controller {
 
     String consoleText = "";
     String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
-    String SLASH = "/";
+    String SLASH = "\\";
     String DELIMITER = ";";
 
     public void selectFile() {
