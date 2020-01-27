@@ -26,8 +26,7 @@ public class Controller {
     private TextField csvFileField;
 
     String consoleText = "";
-    //String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
-    String baseLocation = "/Users/zmru/Desktop";
+    String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
     String SLASH = "/";
     String DELIMITER = ";";
 
@@ -107,16 +106,16 @@ public class Controller {
                     }
 
                     for (String file : folderContentsArray) {
-                        if (file.matches("1[.]txt")) {
-                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destinationDir + "-1.txt"));
+                        if (file.matches("Adressbrev Engar[.]pdf")) {
+                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destinationDir + "-1.pdf"));
                             folderContentsArray.remove(file);
                             break;
                         }
                     }
                     if (!folderContentsArray.isEmpty()) {
                         for (String file : folderContentsArray) {
-                            if (file.matches("2[.]txt")) {
-                                FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destinationDir + "-2.txt"));
+                            if (file.matches("\\d\\d\\d\\d\\d\\d\\d\\d-\\d\\d\\d\\d[.]pdf")) {
+                                FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destinationDir + "-2.pdf"));
                                 folderContentsArray.remove(file);
                                 break;
                             }
@@ -125,7 +124,7 @@ public class Controller {
                     if (!folderContentsArray.isEmpty()) {
                         int orderNumber = folderContentsArray.size() + 2;
                         for (String file : folderContentsArray) {
-                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destinationDir + "-" + orderNumber + ".txt"));
+                            FileUtils.copyFile(new File(lookupLocation + SLASH + file), new File(destinationDir + "-" + orderNumber + ".pdf"));
                             orderNumber--;
                         }
                     }
