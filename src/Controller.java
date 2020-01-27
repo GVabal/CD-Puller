@@ -78,7 +78,10 @@ public class Controller {
             consoleField.setText(consoleText);
             return;
         }
-        records.remove(0); // take out [0nr 1ssn 2date 3robot 4comment]
+
+        if (records.get(0).equals("nr;ssn;date;robot;comment")) {
+            records.remove(0); // take out [0nr 1ssn 2date 3robot 4comment]
+        }
 
         for (List<String> record : records) {
             lookupLocation = baseLocation + SLASH + workLocation + SLASH + record.get(3) + " " + day + SLASH + record.get(1) + " " + record.get(2);
