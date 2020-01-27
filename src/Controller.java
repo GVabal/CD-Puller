@@ -103,10 +103,6 @@ public class Controller {
                     for (File file : folderContents) {
                         String fileName = file.toString().split("\\\\")[12]; //magic number
 
-                        //TEST
-                        consoleText += "fileName with magic number: " + fileName + "\n";
-                        consoleField.setText(consoleText);
-
                         if (!fileName.startsWith("."))
                             folderContentsArray.add(fileName);
                     }
