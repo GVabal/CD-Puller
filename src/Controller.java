@@ -26,8 +26,9 @@ public class Controller {
     private TextField csvFileField;
 
     String consoleText = "";
-    String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
-    String SLASH = "\\";
+    //String baseLocation = "M:\\Gem enheter\\GSS\\Automation\\Business\\GSS\\Commitments & Deposits\\GSS - Dialogen CD (v3.0)\\Manual Handling";
+    String baseLocation = "/Users/zmru/Desktop";
+    String SLASH = "/";
     String DELIMITER = ";";
 
     public void selectFile() {
@@ -100,7 +101,7 @@ public class Controller {
                     List<String> folderContentsArray = new ArrayList<>();
 
                     for (File file : folderContents) {
-                        String fileName = file.toString().split(SLASH)[7];
+                        String fileName = file.toString().split(SLASH)[12]; //magic number
                         if (!fileName.startsWith("."))
                             folderContentsArray.add(fileName);
                     }
