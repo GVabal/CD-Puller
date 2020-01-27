@@ -79,7 +79,7 @@ public class Controller {
             return;
         }
 
-        if (records.get(0).equals("nr;ssn;date;robot;comment")) {
+        if (records.get(0).get(1).equals("ssn") && records.get(0).get(2).equals("date")) {
             records.remove(0); // take out [0nr 1ssn 2date 3robot 4comment]
         }
 
