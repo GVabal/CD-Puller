@@ -1,4 +1,4 @@
-# Commitments and Deposits Puller
+# Commitments and Deposits Puller V2
 
 ## Quick Guide
 Requires Java 8 or higher.
